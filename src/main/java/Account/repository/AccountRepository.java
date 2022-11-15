@@ -4,12 +4,9 @@ import Account.model.Account;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 public class AccountRepository {
-    private static final Configuration configuration = new Configuration().configure();
-    private static final SessionFactory sessionFactory = configuration.buildSessionFactory();
-    private static Account account;
+    SessionFactory sessionFactory = DbHelper.getSessionFactory();
 
     public void creat(Account card) {
         Session session = sessionFactory.openSession();
