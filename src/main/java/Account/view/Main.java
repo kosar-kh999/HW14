@@ -3,11 +3,13 @@ package Account.view;
 import Account.model.Account;
 import Account.model.AccountType;
 import Account.repository.AccountRepository;
+import Account.service.BankService;
 
 import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
+        BankService bankService = new BankService();
         AccountRepository accountRepository = new AccountRepository();
         Account account = new Account();
         account.setAccountNumber("111223444556777889000988");
@@ -19,7 +21,7 @@ public class Main {
         account.setCvv2((int) (Math.random() * (max - min + 1) + min));
         account.setExpirationDate(new Date(2005, 6, 5));
         account.setAccountType(AccountType.LOANS);
-        accountRepository.creat(account);
+        bankService.creatAccount(account);
         Account account1 = new Account();
         account1.setAccountNumber("111223444556777889000977");
         account1.setCardNumber("7776654443321113");
@@ -28,12 +30,13 @@ public class Main {
         account1.setCvv2((int) (Math.random() * (max - min + 1) + min));
         account1.setExpirationDate(new Date(2006, 7, 6));
         account1.setAccountType(AccountType.CURRENT);
-        accountRepository.creat(account1);
-        Account read = accountRepository.read(1);
+        bankService.creatAccount(account1);
+        Account read = bankService.readAccount(1);
         System.out.println(read);
-        accountRepository.update(1, 20000000);
+        bankService.updateAccount(1, 20000000);
+        //bankService.deleteAccount(2);
         //accountRepository.delete(2);
-        accountRepository.deposit(1, 1000000, account.getBalance());
-        accountRepository.withdraw(2, 2000000, account.getBalance());
+        bankService.deposit(1, 1000000, account.getBalance());
+        bankService.withdraw(2, 2000000, account.getBalance());
     }
 }
