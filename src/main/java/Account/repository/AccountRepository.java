@@ -8,10 +8,10 @@ import org.hibernate.Transaction;
 public class AccountRepository {
     SessionFactory sessionFactory = DbHelper.getSessionFactory();
 
-    public void creat(Account card) {
+    public void creat(Account account) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(card);
+        session.save(account);
         transaction.commit();
         session.close();
     }
