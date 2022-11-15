@@ -2,7 +2,6 @@ package Account.view;
 
 import Account.model.Account;
 import Account.model.AccountType;
-import Account.repository.AccountRepository;
 import Account.service.BankService;
 
 import java.util.Date;
@@ -10,7 +9,6 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
         BankService bankService = new BankService();
-        AccountRepository accountRepository = new AccountRepository();
         Account account = new Account();
         account.setAccountNumber("111223444556777889000988");
         account.setCardNumber("7776654443321112");
@@ -35,7 +33,6 @@ public class Main {
         System.out.println(read);
         bankService.updateAccount(1, 20000000);
         //bankService.deleteAccount(2);
-        //accountRepository.delete(2);
         bankService.deposit(1, 1000000, account.getBalance());
         bankService.withdraw(2, 2000000, account.getBalance());
     }

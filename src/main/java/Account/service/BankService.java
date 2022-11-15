@@ -11,7 +11,7 @@ public class BankService {
     }
 
     public Account readAccount(int id) {
-       return accountRepository.read(id);
+        return accountRepository.read(id);
     }
 
     public void updateAccount(int id, double balance) {
