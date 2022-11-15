@@ -3,6 +3,7 @@ package Account.model;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Setter
 @Getter
+@ToString
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,23 +36,5 @@ public class Account {
     @Column(name = "accountType")
     @Enumerated(EnumType.STRING)
     AccountType accountType;
-
-    public void withdraw(double amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Sorry, you can not withdraw a negative amount");
-
-        }
-
-        if (amount > balance) {
-            throw new RuntimeException("Your balance is not enough");
-        }
-
-        balance -= amount;
-    }
-
-    public void deposit(double amount) {
-        balance += amount;
-    }
-
 
 }
