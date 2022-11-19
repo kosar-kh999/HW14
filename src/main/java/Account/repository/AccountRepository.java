@@ -16,14 +16,14 @@ public class AccountRepository {
         session.close();
     }
 
-    public Account read(int id) {
+    public Account findAccount(int id) {//accountNumber
         Session session = sessionFactory.openSession();
         Account account = session.get(Account.class, id);
         session.close();
         return account;
     }
 
-    public void update(int id, double balance) {
+    public void update(int id, double balance) {//Account account
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Account account = session.get(Account.class, id);
@@ -33,7 +33,7 @@ public class AccountRepository {
         session.close();
     }
 
-    public void delete(int id) {
+    public void delete(int id) {//Account account
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Account account = session.get(Account.class, id);
@@ -51,7 +51,7 @@ public class AccountRepository {
         if (amount > balance) {
             throw new RuntimeException("Your balance is not enough");
         }
-        balance = balance - amount;
+        balance = balance - amount;//todo
         Account account1 = session.get(Account.class, id);
         account1.setBalance(balance);
         session.update(account1);
